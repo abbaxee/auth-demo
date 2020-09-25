@@ -1,6 +1,7 @@
 import React from 'react';
 import {Text, TouchableOpacity, ActivityIndicator} from 'react-native';
 import buttonStyles from '../styles/button';
+import {WHITE_COLOR} from '../styles/colors';
 
 const Button = ({onPress, loading, disabled, text}) => {
   return (
@@ -11,7 +12,7 @@ const Button = ({onPress, loading, disabled, text}) => {
       disabled={disabled || loading}>
       {loading ? (
         // eslint-disable-next-line react-native/no-inline-styles
-        <ActivityIndicator style={{padding: 1}} />
+        <ActivityIndicator style={{padding: 1, color: WHITE_COLOR}} />
       ) : (
         <Text style={buttonStyles.buttonText}>{text}</Text>
       )}
