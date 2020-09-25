@@ -10,6 +10,7 @@ const Button = ({onPress, loading, disabled, text}) => {
       onPress={onPress}
       disabled={disabled || loading}>
       {loading ? (
+        // eslint-disable-next-line react-native/no-inline-styles
         <ActivityIndicator style={{padding: 1}} />
       ) : (
         <Text style={buttonStyles.buttonText}>{text}</Text>

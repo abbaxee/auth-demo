@@ -6,19 +6,17 @@
  * @flow strict-local
  */
 
-import React, {useState} from 'react';
+import React from 'react';
 import {StatusBar} from 'react-native';
 
 import AppNavigator from './src/navigation';
 import 'react-native-gesture-handler';
 
 const App = () => {
-  const [user, setUser] = useState({authenticated: false, userData: {}});
-
   return (
     <>
       <StatusBar barStyle="dark-content" />
-      <AppNavigator user={user} />
+      <AppNavigator />
     </>
   );
 };

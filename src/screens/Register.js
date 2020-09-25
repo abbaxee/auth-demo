@@ -16,12 +16,15 @@ import auth from '@react-native-firebase/auth';
 import {isValidEmail} from '../utils';
 import AsyncStorage from '@react-native-community/async-storage';
 import Button from '../components/Button';
+import {AuthContext} from '../navigation';
 
 const Register = ({navigation}) => {
   const [fullname, setFullname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+
+  const {dispatch} = React.useContext(AuthContext);
 
   const onRegister = () => {
     if (!fullname) {
@@ -50,13 +53,24 @@ const Register = ({navigation}) => {
         const userData = await auth().currentUser._user;
         console.log(userData);
         AsyncStorage.setItem('@userData', JSON.stringify(userData));
-        // navigation.navigate('')
-        setLoading(true);
+        dispatch({type: 'LOGIN', payload: userData});
+        setLoading(false);
       })
 
       .catch((error) => {
         const {code, message} = error;
-        Alert.alert('Error', message);
+        console.log(code);
+        let errorMessage = message;
+
+        if (code === 'auth/email-already-in-use') {
+          errorMessage = 'That email address is already in use!';
+        }
+
+        if (code === 'auth/invalid-email') {
+          errorMessage = 'That email address is invalid!';
+        }
+
+        Alert.alert('Error', errorMessage);
         setLoading(false);
       });
   };

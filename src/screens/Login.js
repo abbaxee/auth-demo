@@ -16,11 +16,14 @@ import inputStyles from '../styles/input';
 import {isValidEmail} from '../utils';
 import auth from '@react-native-firebase/auth';
 import AsyncStorage from '@react-native-community/async-storage';
+import {AuthContext} from '../navigation';
 
 const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+
+  const {dispatch} = React.useContext(AuthContext);
 
   const onSubmitForm = async () => {
     if (!isValidEmail(email)) {
@@ -38,11 +41,23 @@ const Login = ({navigation}) => {
         const userData = await auth().currentUser._user;
         console.log(userData);
         AsyncStorage.setItem('@userData', JSON.stringify(userData));
+        dispatch({type: 'LOGIN', payload: userData});
         setLoading(false);
       })
       .catch((error) => {
         const {code, message} = error;
-        Alert.alert('Error', message);
+        console.log(code);
+        let errorMessage = message;
+
+        if (code === 'auth/user-not-found') {
+          errorMessage = 'User not found!';
+        }
+
+        if (code === 'auth/wrong-password') {
+          errorMessage = 'That password is incorrect!';
+        }
+
+        Alert.alert('Error', errorMessage);
         setLoading(false);
       });
   };
