@@ -1,0 +1,13 @@
+export const WHITE_COLOR = '#ffffff';
+export const GREY_THREE = '#333333';
+export const GREY_TWO = '#4F4F4F';
+export const GREY_ONE = '#E0E0E0';
+export const GREY_BG = '#F9F9FA';
+export const GREY_BORDER = '#979797';
+export const BLACK_COLOR = '#0E0E0E';
+export const PRIMARY_COLOR = '#46C35F';
+export const BLUE_COLOR = '#005F91';
+export const MALON_RED = '#FA424A';
+export const TEXT_BLACK = '#263238';
+export const YELLOW_COLOR = '#FEC300';
+export const PRESSED_GREEN = '#339B48';
