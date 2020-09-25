@@ -6,19 +6,21 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
-  ActivityIndicator,
   Alert,
 } from 'react-native';
 import api from '../api';
-import buttonStyles from '../styles/button';
-import {BLUE_COLOR, GREY_THREE} from '../styles/colors';
+import Button from '../components/Button';
+import {BLUE_COLOR, GREY_THREE, MALON_RED} from '../styles/colors';
 import container from '../styles/container';
 import inputStyles from '../styles/input';
 import {isValidEmail} from '../utils';
+import AsyncStorage from '@react-native-community/async-storage';
+import {errorStyle} from '../styles/typography';
 
 const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [hasError, setHasError] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const onSubmitForm = async () => {
@@ -27,15 +29,18 @@ const Login = ({navigation}) => {
       return;
     }
     if (password.length < 6) {
-      Alert.alert('Inavlid Password', 'Password Must be at least 6 characters');
+      Alert.alert('Invalid Password', 'Password Must be at least 6 characters');
       return;
     }
     setLoading(true);
     try {
       const response = await api.loginUser({email, password});
-      console.log(response);
+      // console.log(response);
+      const responseString = JSON.stringify({...response, email});
+      await AsyncStorage.setItem('@userData', responseString);
     } catch (error) {
       console.log(error);
+      setHasError(true);
     } finally {
       setLoading(false);
     }
@@ -46,6 +51,9 @@ const Login = ({navigation}) => {
       <SafeAreaView>
         <View style={container.medium}>
           <View style={inputStyles.inputsContainer}>
+            <Text style={errorStyle}>
+              There was an error with your request, Kindly try again later
+            </Text>
             <TextInput
               selectionColor={GREY_THREE}
               placeholder="Enter Email Address"
@@ -61,16 +69,7 @@ const Login = ({navigation}) => {
               onChangeText={(value) => setPassword(value)}
               value={password}
             />
-            <TouchableOpacity
-              activeOpacity={0.8}
-              style={buttonStyles.button}
-              onPress={onSubmitForm}>
-              {loading ? (
-                <ActivityIndicator style={{padding: 1}} />
-              ) : (
-                <Text style={buttonStyles.buttonText}>Login</Text>
-              )}
-            </TouchableOpacity>
+            <Button onPress={onSubmitForm} loading={loading} text="Login" />
 
             <TouchableOpacity
               activeOpacity={0.8}
