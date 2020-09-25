@@ -8,19 +8,18 @@ import {
   StyleSheet,
   Alert,
 } from 'react-native';
-import api from '../api';
+// import api from '../api';
 import Button from '../components/Button';
-import {BLUE_COLOR, GREY_THREE, MALON_RED} from '../styles/colors';
+import {BLUE_COLOR, GREY_THREE} from '../styles/colors';
 import container from '../styles/container';
 import inputStyles from '../styles/input';
 import {isValidEmail} from '../utils';
+import auth from '@react-native-firebase/auth';
 import AsyncStorage from '@react-native-community/async-storage';
-import {errorStyle} from '../styles/typography';
 
 const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [hasError, setHasError] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const onSubmitForm = async () => {
@@ -33,17 +32,19 @@ const Login = ({navigation}) => {
       return;
     }
     setLoading(true);
-    try {
-      const response = await api.loginUser({email, password});
-      // console.log(response);
-      const responseString = JSON.stringify({...response, email});
-      await AsyncStorage.setItem('@userData', responseString);
-    } catch (error) {
-      console.log(error);
-      setHasError(true);
-    } finally {
-      setLoading(false);
-    }
+    auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(async () => {
+        const userData = await auth().currentUser._user;
+        console.log(userData);
+        AsyncStorage.setItem('@userData', JSON.stringify(userData));
+        setLoading(false);
+      })
+      .catch((error) => {
+        const {code, message} = error;
+        Alert.alert('Error', message);
+        setLoading(false);
+      });
   };
 
   return (
@@ -51,9 +52,6 @@ const Login = ({navigation}) => {
       <SafeAreaView>
         <View style={container.medium}>
           <View style={inputStyles.inputsContainer}>
-            <Text style={errorStyle}>
-              There was an error with your request, Kindly try again later
-            </Text>
             <TextInput
               selectionColor={GREY_THREE}
               placeholder="Enter Email Address"

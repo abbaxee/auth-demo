@@ -7,33 +7,25 @@
  */
 
 import React, {useState} from 'react';
-import {
-  SafeAreaView,
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  Alert,
-} from 'react-native';
-import buttonStyles from '../styles/button';
+import {SafeAreaView, View, TextInput, Alert} from 'react-native';
 import {GREY_THREE} from '../styles/colors';
 import container from '../styles/container';
 import inputStyles from '../styles/input';
 import auth from '@react-native-firebase/auth';
-import firestore from '@react-native-firebase/firestore';
+// import firestore from '@react-native-firebase/firestore';
 import {isValidEmail} from '../utils';
 import AsyncStorage from '@react-native-community/async-storage';
+import Button from '../components/Button';
 
 const Register = ({navigation}) => {
   const [fullname, setFullname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [hasError, setHasError] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const onRegister = () => {
     if (!fullname) {
-      Alert.alert('Enter Full Name');
+      Alert.alert('Input Name', 'Enter Your Full Name');
       return;
     }
 
@@ -50,15 +42,18 @@ const Register = ({navigation}) => {
 
     auth()
       .createUserWithEmailAndPassword(email, password)
-      .then((response) => {
-        const user = auth().currentUser;
-        return user.updateProfile({
+      .then(async () => {
+        const update = {
           displayName: fullname,
-        });
+        };
+        await auth().currentUser.updateProfile(update);
+        const userData = await auth().currentUser._user;
+        console.log(userData);
+        AsyncStorage.setItem('@userData', JSON.stringify(userData));
+        // navigation.navigate('')
+        setLoading(true);
       })
-      .then((data) => {
-        console.log(data);
-      })
+
       .catch((error) => {
         const {code, message} = error;
         Alert.alert('Error', message);
@@ -93,12 +88,8 @@ const Register = ({navigation}) => {
               onChangeText={(value) => setPassword(value)}
               value={password}
             />
-            <TouchableOpacity
-              onPress={onRegister}
-              activeOpacity={0.8}
-              style={buttonStyles.button}>
-              <Text style={buttonStyles.buttonText}>Sign Up</Text>
-            </TouchableOpacity>
+
+            <Button text="register" onPress={onRegister} loading={loading} />
           </View>
         </View>
       </SafeAreaView>
