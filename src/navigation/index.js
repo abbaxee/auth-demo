@@ -54,7 +54,10 @@ const AppNavigator = () => {
         <Navigator screenOptions={{headerTitleStyle: styles.headerTitleStyle}}>
           {!authState.user ? (
             <>
-              <Screen name="Login" component={Login} />
+              {/* Passing auth as props to make testing methods more/easier testable */}
+              <Screen name="Login">
+                {(props) => <Login auth={auth} {...props} />}
+              </Screen>
               <Screen name="Register">
                 {(props) => <Register auth={auth} {...props} />}
               </Screen>
