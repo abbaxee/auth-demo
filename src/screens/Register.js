@@ -7,7 +7,15 @@
  */
 
 import React, {useState} from 'react';
-import {SafeAreaView, View, TextInput, Alert} from 'react-native';
+import {
+  SafeAreaView,
+  View,
+  TextInput,
+  Alert,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+} from 'react-native';
 import {GREY_THREE} from '../styles/colors';
 import container from '../styles/container';
 import inputStyles from '../styles/input';
@@ -77,35 +85,45 @@ const Register = ({auth}) => {
   return (
     <>
       <SafeAreaView>
-        <View style={container.medium}>
-          <View style={inputStyles.inputsContainer}>
-            <TextInput
-              selectionColor={GREY_THREE}
-              placeholder="Enter Name"
-              testID="CreateAccount.name"
-              style={inputStyles.input}
-              onChangeText={(value) => setFullname(value)}
-              value={fullname}
-            />
-            <TextInput
-              selectionColor={GREY_THREE}
-              placeholder="Enter Email"
-              style={inputStyles.input}
-              onChangeText={(value) => setEmail(value)}
-              value={email}
-            />
-            <TextInput
-              selectionColor={GREY_THREE}
-              placeholder="Enter Password"
-              style={inputStyles.input}
-              secureTextEntry
-              onChangeText={(value) => setPassword(value)}
-              value={password}
-            />
+        <KeyboardAvoidingView
+          behavior={Platform.OS === 'ios' ? 'padding' : null}
+          enabled>
+          <ScrollView showsVerticalScrollIndicator={false}>
+            <View style={container.medium}>
+              <View style={inputStyles.inputsContainer}>
+                <TextInput
+                  selectionColor={GREY_THREE}
+                  placeholder="Enter Name"
+                  testID="CreateAccount.name"
+                  style={inputStyles.input}
+                  onChangeText={(value) => setFullname(value)}
+                  value={fullname}
+                />
+                <TextInput
+                  selectionColor={GREY_THREE}
+                  placeholder="Enter Email"
+                  style={inputStyles.input}
+                  onChangeText={(value) => setEmail(value)}
+                  value={email}
+                />
+                <TextInput
+                  selectionColor={GREY_THREE}
+                  placeholder="Enter Password"
+                  style={inputStyles.input}
+                  secureTextEntry
+                  onChangeText={(value) => setPassword(value)}
+                  value={password}
+                />
 
-            <Button text="Register" onPress={onRegister} loading={loading} />
-          </View>
-        </View>
+                <Button
+                  text="Register"
+                  onPress={onRegister}
+                  loading={loading}
+                />
+              </View>
+            </View>
+          </ScrollView>
+        </KeyboardAvoidingView>
       </SafeAreaView>
     </>
   );

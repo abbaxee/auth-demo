@@ -7,6 +7,9 @@ import {
   TouchableOpacity,
   StyleSheet,
   Alert,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
 } from 'react-native';
 import Button from '../components/Button';
 import {BLUE_COLOR, GREY_THREE} from '../styles/colors';
@@ -63,35 +66,41 @@ const Login = ({auth, navigation}) => {
   return (
     <>
       <SafeAreaView>
-        <View style={container.medium}>
-          <View style={inputStyles.inputsContainer}>
-            <TextInput
-              selectionColor={GREY_THREE}
-              placeholder="Enter Email"
-              style={inputStyles.input}
-              onChangeText={(value) => setEmail(value)}
-              value={email}
-            />
-            <TextInput
-              selectionColor={GREY_THREE}
-              placeholder="Enter Password"
-              style={inputStyles.input}
-              secureTextEntry
-              onChangeText={(value) => setPassword(value)}
-              value={password}
-            />
-            <Button onPress={onSubmitForm} loading={loading} text="Login" />
+        <KeyboardAvoidingView
+          behavior={Platform.OS === 'ios' ? 'padding' : null}
+          enabled>
+          <ScrollView showsVerticalScrollIndicator={false}>
+            <View style={container.medium}>
+              <View style={inputStyles.inputsContainer}>
+                <TextInput
+                  selectionColor={GREY_THREE}
+                  placeholder="Enter Email"
+                  style={inputStyles.input}
+                  onChangeText={(value) => setEmail(value)}
+                  value={email}
+                />
+                <TextInput
+                  selectionColor={GREY_THREE}
+                  placeholder="Enter Password"
+                  style={inputStyles.input}
+                  secureTextEntry
+                  onChangeText={(value) => setPassword(value)}
+                  value={password}
+                />
+                <Button onPress={onSubmitForm} loading={loading} text="Login" />
 
-            <TouchableOpacity
-              activeOpacity={0.8}
-              onPress={() => navigation.navigate('Register')}>
-              <Text style={styles.signupText}>
-                Don't have an account?
-                <Text style={{color: BLUE_COLOR}}> Register</Text>
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </View>
+                <TouchableOpacity
+                  activeOpacity={0.8}
+                  onPress={() => navigation.navigate('Register')}>
+                  <Text style={styles.signupText}>
+                    Don't have an account?
+                    <Text style={{color: BLUE_COLOR}}> Register</Text>
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </ScrollView>
+        </KeyboardAvoidingView>
       </SafeAreaView>
     </>
   );

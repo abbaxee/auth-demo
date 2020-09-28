@@ -1,6 +1,6 @@
 # auth-demo
 
-This is an auth Demo. This project is built with react native
+This is an auth demo. This project is built with react native and firebase
 
 ## Requirement
 
