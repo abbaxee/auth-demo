@@ -2,6 +2,9 @@
 
 This is an auth demo. This project is built with react native and firebase
 
+## Demo apk url
+- https://drive.google.com/file/d/1l5FJyyjVfrnlOMnfMeDrQZ4kl9y6D4mE/view?usp=sharing
+
 ## Requirement
 
 - `Node`
