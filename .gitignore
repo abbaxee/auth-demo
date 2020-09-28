@@ -5,6 +5,7 @@
 # Xcode
 #
 build/
+GoogleService-Info.plist
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -28,6 +29,7 @@ build/
 .gradle
 local.properties
 *.iml
+google-services.json
 
 # node.js
 #
