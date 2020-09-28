@@ -29,6 +29,7 @@ This is an auth demo. This project is built with react native and firebase
 - Clone the project to your local machine
 - Download and install project dependencies using `yarn install`
 - To start the project use `yarn start`
+- To run test use `yarn test`
 - To install the pod files for, `cd ios` and run `pod install` which will download the required dependencies for your pod files
 - To run on ios emulator run `yarn ios`
 - To run on android emulator run `yarn android`
