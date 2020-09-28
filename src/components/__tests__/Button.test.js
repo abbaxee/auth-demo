@@ -24,3 +24,12 @@ test('onPress is not called when button is disabled', () => {
   fireEvent.press(getByText('Login'));
   expect(onPressMock).not.toHaveBeenCalled();
 });
+
+test('When loading it does not show text and is disabled', () => {
+  const onPressMock = jest.fn();
+  const {getByText} = render(
+    <Button text="Login" onPress={onPressMock} loading />,
+  );
+
+  expect(() => getByText('Login')).toThrow('No instances found');
+});

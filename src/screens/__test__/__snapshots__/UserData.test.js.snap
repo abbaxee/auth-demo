@@ -1,0 +1,386 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`User Data renders properly 1`] = `
+<RCTSafeAreaView
+  emulateUnlessSupported={true}
+>
+  <View
+    style={
+      Object {
+        "padding": 24,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#ffffff",
+          "borderRadius": 6,
+          "marginBottom": 20,
+          "padding": 40,
+        }
+      }
+    >
+      <View>
+        <Image
+          resizeMode="contain"
+          source={
+            Object {
+              "uri": "https://picsum.photos/200",
+            }
+          }
+          style={
+            Object {
+              "borderRadius": 70,
+              "height": 140,
+              "width": 140,
+            }
+          }
+        />
+      </View>
+      <View
+        style={
+          Object {
+            "marginTop": 20,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#333333",
+              "fontSize": 14,
+              "paddingVertical": 2,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "fontWeight": "bold",
+              }
+            }
+          >
+            Name
+            : 
+          </Text>
+           
+          John Doe
+        </Text>
+        <Text
+          style={
+            Object {
+              "color": "#333333",
+              "fontSize": 14,
+              "paddingVertical": 2,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "fontWeight": "bold",
+              }
+            }
+          >
+            Email
+            : 
+          </Text>
+           
+          john@doe.com
+        </Text>
+      </View>
+    </View>
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 6,
+          "marginVertical": 20,
+          "opacity": 1,
+          "padding": 16,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#ffffff",
+            "fontSize": 18,
+            "fontWeight": "bold",
+            "textTransform": "uppercase",
+          }
+        }
+      >
+        Logout
+      </Text>
+    </View>
+  </View>
+</RCTSafeAreaView>
+`;
+
+exports[`User Data renders properly: 
+    <RCTSafeAreaView
+      emulateUnlessSupported={true}
+    >
+      <View
+        style={
+          Object {
+            "padding": 24,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "backgroundColor": "#ffffff",
+              "borderRadius": 6,
+              "marginBottom": 20,
+              "padding": 40,
+            }
+          }
+        >
+          <View>
+            <Image
+              resizeMode="contain"
+              source={
+                Object {
+                  "uri": "https://picsum.photos/200",
+                }
+              }
+              style={
+                Object {
+                  "borderRadius": 70,
+                  "height": 140,
+                  "width": 140,
+                }
+              }
+            />
+          </View>
+          <View
+            style={
+              Object {
+                "marginTop": 20,
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#333333",
+                  "fontSize": 14,
+                  "paddingVertical": 2,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "fontWeight": "bold",
+                  }
+                }
+              >
+                Name
+                :
+              </Text>
+
+              John Doe
+            </Text>
+            <Text
+              style={
+                Object {
+                  "color": "#333333",
+                  "fontSize": 14,
+                  "paddingVertical": 2,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "fontWeight": "bold",
+                  }
+                }
+              >
+                Email
+                :
+              </Text>
+
+              john@doe.com
+            </Text>
+          </View>
+        </View>
+        <View
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#333333",
+              "borderRadius": 6,
+              "marginVertical": 20,
+              "opacity": 1,
+              "padding": 16,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#ffffff",
+                "fontSize": 18,
+                "fontWeight": "bold",
+                "textTransform": "uppercase",
+              }
+            }
+          >
+            Logout
+          </Text>
+        </View>
+      </View>
+    </RCTSafeAreaView>
+   1`] = `
+<RCTSafeAreaView
+  emulateUnlessSupported={true}
+>
+  <View
+    style={
+      Object {
+        "padding": 24,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#ffffff",
+          "borderRadius": 6,
+          "marginBottom": 20,
+          "padding": 40,
+        }
+      }
+    >
+      <View>
+        <Image
+          resizeMode="contain"
+          source={
+            Object {
+              "uri": "https://picsum.photos/200",
+            }
+          }
+          style={
+            Object {
+              "borderRadius": 70,
+              "height": 140,
+              "width": 140,
+            }
+          }
+        />
+      </View>
+      <View
+        style={
+          Object {
+            "marginTop": 20,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#333333",
+              "fontSize": 14,
+              "paddingVertical": 2,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "fontWeight": "bold",
+              }
+            }
+          >
+            Name
+            : 
+          </Text>
+           
+          John Doe
+        </Text>
+        <Text
+          style={
+            Object {
+              "color": "#333333",
+              "fontSize": 14,
+              "paddingVertical": 2,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "fontWeight": "bold",
+              }
+            }
+          >
+            Email
+            : 
+          </Text>
+           
+          john@doe.com
+        </Text>
+      </View>
+    </View>
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#333333",
+          "borderRadius": 6,
+          "marginVertical": 20,
+          "opacity": 1,
+          "padding": 16,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#ffffff",
+            "fontSize": 18,
+            "fontWeight": "bold",
+            "textTransform": "uppercase",
+          }
+        }
+      >
+        Logout
+      </Text>
+    </View>
+  </View>
+</RCTSafeAreaView>
+`;

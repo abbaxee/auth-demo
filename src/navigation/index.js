@@ -5,6 +5,7 @@ import Login from '../screens/Login';
 import Register from '../screens/Register';
 import UserData from '../screens/UserData';
 import {StyleSheet} from 'react-native';
+import auth from '@react-native-firebase/auth';
 
 import AsyncStorage from '@react-native-community/async-storage';
 
@@ -42,14 +43,21 @@ const AppNavigator = () => {
     initializeAuth();
   }, []);
 
+  const logout = React.useCallback(() => {
+    AsyncStorage.removeItem('@userData');
+    dispatch({type: 'LOGOUT'});
+  }, [dispatch]);
+
   return (
-    <AuthContext.Provider value={{state: authState, dispatch}}>
+    <AuthContext.Provider value={{state: authState, dispatch, logout}}>
       <NavigationContainer>
         <Navigator screenOptions={{headerTitleStyle: styles.headerTitleStyle}}>
           {!authState.user ? (
             <>
               <Screen name="Login" component={Login} />
-              <Screen name="Register" component={Register} />
+              <Screen name="Register">
+                {(props) => <Register auth={auth} {...props} />}
+              </Screen>
             </>
           ) : (
             <Screen

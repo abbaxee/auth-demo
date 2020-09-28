@@ -14,7 +14,7 @@ import {BLUE_COLOR, GREY_THREE} from '../styles/colors';
 import container from '../styles/container';
 import inputStyles from '../styles/input';
 import {isValidEmail} from '../utils';
-import auth from '@react-native-firebase/auth';
+// import auth from '@react-native-firebase/auth';
 import AsyncStorage from '@react-native-community/async-storage';
 import {AuthContext} from '../navigation';
 
@@ -35,31 +35,31 @@ const Login = ({navigation}) => {
       return;
     }
     setLoading(true);
-    auth()
-      .signInWithEmailAndPassword(email, password)
-      .then(async () => {
-        const userData = await auth().currentUser._user;
-        console.log(userData);
-        AsyncStorage.setItem('@userData', JSON.stringify(userData));
-        dispatch({type: 'LOGIN', payload: userData});
-        setLoading(false);
-      })
-      .catch((error) => {
-        const {code, message} = error;
-        console.log(code);
-        let errorMessage = message;
+    // auth()
+    //   .signInWithEmailAndPassword(email, password)
+    //   .then(async () => {
+    //     const userData = await auth().currentUser._user;
+    //     console.log(userData);
+    //     AsyncStorage.setItem('@userData', JSON.stringify(userData));
+    //     dispatch({type: 'LOGIN', payload: userData});
+    //     setLoading(false);
+    //   })
+    //   .catch((error) => {
+    //     const {code, message} = error;
+    //     console.log(code);
+    //     let errorMessage = message;
 
-        if (code === 'auth/user-not-found') {
-          errorMessage = 'User not found!';
-        }
+    //     if (code === 'auth/user-not-found') {
+    //       errorMessage = 'User not found!';
+    //     }
 
-        if (code === 'auth/wrong-password') {
-          errorMessage = 'That password is incorrect!';
-        }
+    //     if (code === 'auth/wrong-password') {
+    //       errorMessage = 'That password is incorrect!';
+    //     }
 
-        Alert.alert('Error', errorMessage);
-        setLoading(false);
-      });
+    //     Alert.alert('Error', errorMessage);
+    //     setLoading(false);
+    //   });
   };
 
   return (

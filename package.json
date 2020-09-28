@@ -36,12 +36,22 @@
     "jest": "^26.4.2",
     "jest-fetch-mock": "^3.0.3",
     "metro-react-native-babel-preset": "^0.63.0",
-    "react-test-renderer": "16.13.1"
+    "react-test-renderer": "16.13.1",
+    "regenerator-runtime": "^0.13.7"
   },
   "jest": {
     "preset": "react-native",
+    "verbose": true,
     "setupFilesAfterEnv": [
       "@testing-library/jest-native/extend-expect"
-    ]
+    ],
+    "setupFiles": [
+      "./node_modules/react-native-gesture-handler/jestSetup.js"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!(react-native|my-project|react-native-button|react-native-iphone-x-helper|react-native-gesture-handler|@react-navigation)/)"
+    ],
+    "automock": false,
+    "moduleNameMapper": { "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/assetsTransformer.js", "\\.(css|less)$": "<rootDir>/assetsTransformer.js" }
   }
 }

@@ -1,10 +1,10 @@
-import AsyncStorage from '@react-native-community/async-storage';
 import React from 'react';
 import {SafeAreaView, View, Text, StyleSheet, Image} from 'react-native';
 import Button from '../components/Button';
 import {AuthContext} from '../navigation';
 import {GREY_THREE, WHITE_COLOR} from '../styles/colors';
 import container from '../styles/container';
+// import AsyncStorage from '@react-native-community/async-storage';
 
 const DetailText = ({title, text}) => (
   <Text style={styles.detailText}>
@@ -13,12 +13,7 @@ const DetailText = ({title, text}) => (
 );
 
 const UserData = () => {
-  const {state, dispatch} = React.useContext(AuthContext);
-
-  const onLogout = async () => {
-    await AsyncStorage.removeItem('@userData');
-    dispatch({type: 'LOGOUT'});
-  };
+  const {state, logout} = React.useContext(AuthContext);
 
   const {user} = state;
 
@@ -40,7 +35,7 @@ const UserData = () => {
               <DetailText title="Email" text={user && user.email} />
             </View>
           </View>
-          <Button text="Logout" onPress={onLogout} />
+          <Button text="Logout" onPress={logout} />
         </View>
       </SafeAreaView>
     </>

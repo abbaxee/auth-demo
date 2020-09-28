@@ -11,14 +11,13 @@ import {SafeAreaView, View, TextInput, Alert} from 'react-native';
 import {GREY_THREE} from '../styles/colors';
 import container from '../styles/container';
 import inputStyles from '../styles/input';
-import auth from '@react-native-firebase/auth';
-// import firestore from '@react-native-firebase/firestore';
+// import auth from '@react-native-firebase/auth';
 import {isValidEmail} from '../utils';
 import AsyncStorage from '@react-native-community/async-storage';
 import Button from '../components/Button';
 import {AuthContext} from '../navigation';
 
-const Register = ({navigation}) => {
+const Register = ({auth}) => {
   const [fullname, setFullname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -26,7 +25,7 @@ const Register = ({navigation}) => {
 
   const {dispatch} = React.useContext(AuthContext);
 
-  const onRegister = () => {
+  const onRegister = React.useCallback(() => {
     if (!fullname) {
       Alert.alert('Input Name', 'Enter Your Full Name');
       return;
@@ -51,7 +50,7 @@ const Register = ({navigation}) => {
         };
         await auth().currentUser.updateProfile(update);
         const userData = await auth().currentUser._user;
-        console.log(userData);
+        console.log({userData});
         AsyncStorage.setItem('@userData', JSON.stringify(userData));
         dispatch({type: 'LOGIN', payload: userData});
         setLoading(false);
@@ -73,7 +72,7 @@ const Register = ({navigation}) => {
         Alert.alert('Error', errorMessage);
         setLoading(false);
       });
-  };
+  }, [fullname, email, password, setLoading, dispatch, auth]);
 
   return (
     <>
@@ -83,13 +82,14 @@ const Register = ({navigation}) => {
             <TextInput
               selectionColor={GREY_THREE}
               placeholder="Enter Name"
+              testID="CreateAccount.name"
               style={inputStyles.input}
               onChangeText={(value) => setFullname(value)}
               value={fullname}
             />
             <TextInput
               selectionColor={GREY_THREE}
-              placeholder="Enter Email Address"
+              placeholder="Enter Email"
               style={inputStyles.input}
               onChangeText={(value) => setEmail(value)}
               value={email}
@@ -103,7 +103,7 @@ const Register = ({navigation}) => {
               value={password}
             />
 
-            <Button text="register" onPress={onRegister} loading={loading} />
+            <Button text="Register" onPress={onRegister} loading={loading} />
           </View>
         </View>
       </SafeAreaView>
